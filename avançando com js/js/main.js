@@ -17,7 +17,7 @@ function getTotal(list) {
 function setList(list){
 	var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>';
 	for(var key in list){
-			table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+ list[key].amount +'</td><td>'+ formatValue(list[key].value) +'</td><td>Edit | Delete</td></tr>';
+			table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+ list[key].amount +'</td><td>'+ formatValue(list[key].value) +'</td><td><button class="btn btn-default" onclick="setUpdate('+key+');">Edit</button> | Delete</td></tr>';
 	}
 	table += '</tbody>';
 	document.getElementById("listTable").innerHTML = table;
@@ -38,6 +38,33 @@ function  formatValue(value){
 	return str;
 }
 
+
+function addData () {
+var desc = document.getElementById("desc").value; // . value pega o valor do input e atribui para a variavel
+var amount = document.getElementById("amount").value;
+var value = document.getElementById("value").value;
+
+list.unshift({"desc":desc , "amount":amount, "value":value });  // unshift adiciona o item por primeiro na lista
+setList(list); // para setar a tabela novamente
+
+}
+
+function setUpdate(id) { // replace de uma linha para edição
+	var obj = list[id]; // essa variavel vai receber um objeto da lista. Que rebe o ID dentro dela
+	document.getElementById("desc").value = obj.desc; //
+	document.getElementById("amount").value = obj.amount; //
+	document.getElementById("value").value = obj.value; // 
+	document.getElementById("btnUpdate").style.display = "inline-block";
+	document.getElementById("btnAdd").style.display = "none";
+}
+
+function resetForm() {
+	document.getElementById("desc").value = ""; //
+	document.getElementById("amount").value = ""; //
+	document.getElementById("value").value = ""; //
+	document.getElementById("btnUpdate").style.display = "none";
+	document.getElementById("btnAdd").style.display = "inline-block";
+}
 
 
 setList(list);
