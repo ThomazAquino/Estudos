@@ -1,16 +1,12 @@
 <?php
 
 class Carro {
-
     private $modelo;  
     private $motor;
     private $ano;
-
     // Existem metodos chamados getters e seters -> pegar o valor ou definir os valores do atributo
     // Aqui para cada atributo vai ter 2 metodos um pra pegar e outro p definir o valor.
-
     public function getModelo() {   // função para pegar // convenção para nomes
-        
         return $this->modelo;
     }
 
