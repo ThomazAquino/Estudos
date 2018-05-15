@@ -5,7 +5,7 @@ class Pessoa { //palavra reservada class. Convenção para o nome de classes: Pr
 
     public $nome = "Thomaz"; // public = palavra reservada para encapsulamento. (Atributo) // public, private ou protected
 
-    public function falar() {  //public = palavra reservada para encapsulamento.  (Método)
+    public function falar() {  // (Método)
         return "O meu nome é ".$this->nome;   // $this-> (USAR DENTRO DE UM METODO) Representação da classe ja instanciada, ou seja o objeto (professor da classe). O $This faz o papel de $ da variavel, toda vez que quiser consultar um atributo dentro de um metodo usar $This->nome. Se tiver fora pode ir direto com $nome sem o $this->nome
     }
 }

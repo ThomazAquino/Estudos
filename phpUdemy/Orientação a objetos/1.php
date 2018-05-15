@@ -14,3 +14,5 @@
 //Objeto --> "Uma variavel que representa" ou faz uma copia ??? da "classe". para acessar um método eu tenho que primeiro chamar o objeto responsavel pela classe. $variavel = New cria objeto
 
 //Instancia: Quando uma variavel instancia ou representa uma classe. Quando eu criar uma classe com atributos e metodos, na hora de usala eu preciso fazer um processo chamado "Instancia" --> Usar a classe.
+
+// Cada classe só tem um objeto? ou posso setar varios?
