@@ -1,6 +1,5 @@
 <?php 
 class Documento {
-
     private $numero;
 
     public function getNumero() {
@@ -8,7 +7,12 @@ class Documento {
     }
 
     public function setNumero($numero) {
-        Documento::validarCPF($numero);  // usa o :: para metodos estaticos. Se fosse um metodo normal era "->"
+        $resultado = Documento::validarCPF($numero);  // usa o :: para metodos estaticos. Se fosse um metodo normal era "->"
+
+        if ($resultado == false) {
+            throw new Exception("CPF informado n é valido.", 1);
+        }
+
         $this->numero = $numero;
     }
 
@@ -28,15 +32,15 @@ class Documento {
         }
         
         else if ($cpf == '00000000000' || 
-            $cpf == '11111111111' || 
-            $cpf == '22222222222' || 
-            $cpf == '33333333333' || 
-            $cpf == '44444444444' || 
-            $cpf == '55555555555' || 
-            $cpf == '66666666666' || 
-            $cpf == '77777777777' || 
-            $cpf == '88888888888' || 
-            $cpf == '99999999999') {
+                 $cpf == '11111111111' || 
+                 $cpf == '22222222222' || 
+                 $cpf == '33333333333' || 
+                 $cpf == '44444444444' || 
+                 $cpf == '55555555555' || 
+                 $cpf == '66666666666' || 
+                 $cpf == '77777777777' || 
+                 $cpf == '88888888888' || 
+                 $cpf == '99999999999') {
             return false;
     
          } else {   
@@ -56,9 +60,13 @@ class Documento {
         }
     }
 }
-
+/*
 $cpf = new Documento();
-$cpf->setNumero("00000000000");
+$cpf->setNumero("09264690964");
 
 var_dump($cpf->getNumero());
+*/
+
+var_dump(Documento::validarCPF("09264690964")); // consigo chamar sem criar o objeto, sem instanciar a classe
+
 ?>
