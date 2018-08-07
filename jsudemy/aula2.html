@@ -3,29 +3,50 @@
 
 
 
-// return apra a funçao e devolve o valor
+// return: para a funçao e devolve o valor
 
 /* 3 tipos de funcao:
     Funçao comum: pode chamar quantas vezes quiser
     Funçao anonima: Nao tem nome
-    ero function: Sao mais simples, o codigo dentro da funcao é mais 
+    ero function: Sao mais simples, o codigo dentro da funcao é mais (facilita a escrita)
 */
 
 
 
 function somar(x1,x2, operator) {
-
     return x1 + x2;
-}
-
+};
 let resultado = somar(2,2); // atribuindo o return da funcao a variavel resultado
 console.log(resultado);
 
+// -----------
+
 
 function calc(x1, operador, x2) {
-    return 
+    return eval(`${x1} + ${operador} + ${x2}`); // funçao nativa. Pega uma string e tentar execultar.
+};
+let result = calc(10,"-",2);
+console.log(result);
 
-}
+//------------- Mesma coisa acima só que com uma funçao anonima (Sem nome)
+
+
+(function(x1, operador, x2) {   // Coloca entre pararentes pra dizer que é um valor (Um bloco de codigo que ta sendo criado)
+    return eval(`${x1} + ${operador} + ${x2}`); 
+})(10,"-",2);      // a funçao é chamada assim que criada; os parenteses de chamar a funçao ficam no final
+                   // depois desse momento a funçao nao existe mais
+console.log(result);
+
+//------------- Ero function - da pra compartilhar informaçoes que estao de fora dentro da funcao, alem de ser uma form amais resumida de escrever.
+
+
+let calc2 = (x1, operador, x2) => { // nao precisa escrever a palavra function // atribui os parametros a uma variavel // e coloca => antes de abrir o bloco de code .
+    return eval(`${x1} + ${operador} + ${x2}`);
+};
+let result2 = calc2(10000,"-",200); // normal, cria uma variavel pra representar o resultado.
+console.log(result2);
+
+
 
 
 
