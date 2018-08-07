@@ -4,6 +4,7 @@
 <script>
 
 /* js é case sensitive.
+fracamente tipada (nao precisa declarar o tipo de dado)
 * em cada navegador tem um motor que interpreta o js. No caso do chrome é o V8.
 
     var = declara variavel.
@@ -13,8 +14,85 @@
 
     const = declara constante - valor fixo, nunca pode mudar.
 
-prou em 11:26
+    decimais sao separados por pontos.
+
+    typeof -- Mostra o tipo de dado da variavel
+
+    instanceof -- de que instancia ou de que objeto veio a variavel 
+
+
  */
+
+
+let a = 10;
+
+const b = "10";
+
+console.log(a == b && typeof b == 'string'); // true
+console.log(typeof b); // string
+
+
+// switch -- Quando eu ja sei as opçoes que ja podem acontecer.
+
+let cor = "amarelo";
+
+switch (cor) {
+
+    case "verde": 
+    console.log("siga");
+    break;
+
+    case "amarelo": 
+    console.log("atençao");
+    break;
+
+    case "vermelho": 
+    console.log("pare");
+    break;
+
+    default:      // default é igual ao else
+    console.log("diferente");
+}
+
+// Laços
+// FOR
+
+/* Se voce sabe quantas vezes exatamente vai ter d erepetiçao. por ex: uma tabuada de 10x usaremos um for com 3 instruçoes que sao: de onde ele inicia, até quando ele vai executar o for e o incremento dessa variavel. 
+
+Tambem da pra percorrer um Array, para cada indice que se acha dentro de um array vai execultar alguma coisa (Para cada) For each.
+
+Outro for é para percorrer nomes de atributos de objetos -- for in -- para cada chave que ele encontrar ou para cada atributo que ele encontrar de um objeto.
+
+*/
+
+// WHILE (enquanto) e do while que execulta pelo menos uma vez.
+
+// O break interrompe a execuçao de qualquer laço. É usado em cima de uma condiçao if dentro do laço. SAI do laço
+
+// Continue, ignore apenas uma repetiçao do laço (Nao interrompe o laço, só pula uma determinada repetição)
+
+let n = 5;
+
+for ( let i = 0; i <= 10; i++) {
+    console.log(`${i} X ${n} = ${i*n}`); // Template String - permite que voce pule linha em uma string. colocar comandos no meio da string. -- PODE QUEBRAR LINHA
+   // console.log(i + " X " + n + " = " + (i * n)); // tambem porderia ser por concatenaçao
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
