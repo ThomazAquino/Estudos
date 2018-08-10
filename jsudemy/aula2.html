@@ -78,25 +78,104 @@ console.log(agora2); // agr vem bonito
 
 //tambem, poderia manipular cada parte dessa data
 
-let agora3 = new Date(); // 
-console.log(agora3.getDate()); // agr vem o dia
-console.log(agora3.getfullYear()); // agr vem o ano
-console.log(agora3.getMonth()); // agr vem o mes
+// let agora3 = new Date(); // 
+// console.log(agora3.getDate()); // agr vem o dia
+// console.log(agora3.getfullYear()); // agr vem o ano
+// console.log(agora3.getMonth()); // agr vem o mes
 
 
 //-----  Arrays
 
 // array é uma variavel indexada, cuja a posiçao sao os indices e os valores sao os dados dentro dele.
 
+let carros = ["palio 98",    // [] representaçao de array. No primeiro index temos o palio 98, se tiver mais de um separar por virgula. Posiçao 0
+              "Uno", // posiçao 1
+              true, // posiçao 2 - boleano
+              14, // posiçao 3 -- numero
+              function somar(){} // posicao 4 funcao
+              ]; 
 
-//parou em 21:48
+              console.log(carros); // mostra o array todo
+              console.log(carros.length); // mlength mostra o numero de itens dentro do array
+              console.log(carros[0]); // mostra o index 0 primeiro item do array
+
+
+// fazer um laço para percorrer esse array e l;istar que tipo de informaço tem em cada uma posiçao
+
+carros.forEach(function(value, index){  // foreach vai receber uma funçao anonima, essa funcao anonima que vai ser passada 
+                                        //como argumento para o metodo foreach recebe o VALOR ou seja qual item do array que 
+                                        //ta apssando no momento (chamei de value, e vai passar tambem qual é o indice -- em que posiçao ele ta dentro do arrai (chamei de index))
+
+    console.log(index, value);
+}); 
+
+console.log("DIVISAO");
+
+
+
+let amd = [
+    "ryzen 3",
+    "ryzen 5",
+    "ryzen 7"
+
+];
+console.log(amd);
+
+
+amd.forEach(function(baba, bebe){
+    console.log(baba, bebe);
+});
+
+// Orientaçao a objetos
+
+
+// Quanto mais inteligente for a classem mais limpo vai ser o codigo final
+
+// toda vez que tiver ponto = tenho um objeto (antes to ponto) e to acessado algo que esta dentro do objeto -> um metodo ou um atributo
+
+
+let celular = function(){
+    this.cor = "prata"; //  se forsse var ou let cor nao dava pra acessar de fora
+    this.tela = "1080p";
+
+    function ligar1 (){ // assim eu nao acesso ela de fora, preciso promover essa func a um metodo
+    };
+
+    this.ligar = function() { // funcao anonima
+        console.log("uma ligaçao");
+    }
+}
+
+let objeto = new celular();
+
+console.log(objeto);
+console.log(objeto.tela); // dentro do objeto -> atributo tela
+console.log(objeto.ligar());
+
+// isso nao ta exatamente em uma classe criai um arquivo chamado celular.js fazendo isso da maneira certa.
 
 
 
 
+//É bom oa rquivo ter o nome da classe
 
+// toda vez que alguem chama uma funcao com () é chamado o metodo construtor
 
+class celular2 { //criando a classe chamada celular
 
+    constructor(){      // fazendo referencia ao metodo construto
+        this.cor = "preta";
+    }
+
+    ligar(){
+        console.log("uma ligaçao");
+        return "ligando......";
+    }
+};
+
+let objeto2 = new celular2();
+console.log(objeto2);
+console.log(objeto2.ligar());
 
 
 
