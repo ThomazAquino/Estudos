@@ -46,7 +46,50 @@ let calc2 = (x1, operador, x2) => { // nao precisa escrever a palavra function /
 let result2 = calc2(10000,"-",200); // normal, cria uma variavel pra representar o resultado.
 console.log(result2);
 
+//-------------------------------------------------
 
+// DOM
+
+// Eventos
+
+window.addEventListener('focus', event => {  // variavel window ja existe no contexto global do navegador; adiciona um evento e esse evento é o focus. 
+            console.log("FOCUS");            //Coloca o evento que vai receber (a variavle que o navegador vai passar)
+                                             // parece um ero function
+});    
+
+
+// outra variavel que tem no navegador que podemos adicionar eventos é o document
+// window é a janela, document é o site pode ter caso onde  quero trabalhar com toda a aplicaçao ai seria window
+// na window tem acesso ao historico do user, da refresh na janela, propriedades da janela, fechar janela, focus..
+
+document.addEventListener('click', event => { // sempre é o alvo e o evento que deve acontecer
+    console.log("click");
+});
+
+// classe Date  -- 
+
+let agora = Date.now(); 
+console.log(agora); // timestump em milisegundos - nao ta legivel ainda
+
+// de outra forma:
+
+let agora2 = new Date(); // Instanciar a classe
+console.log(agora2); // agr vem bonito
+
+//tambem, poderia manipular cada parte dessa data
+
+let agora3 = new Date(); // 
+console.log(agora3.getDate()); // agr vem o dia
+console.log(agora3.getfullYear()); // agr vem o ano
+console.log(agora3.getMonth()); // agr vem o mes
+
+
+//-----  Arrays
+
+// array é uma variavel indexada, cuja a posiçao sao os indices e os valores sao os dados dentro dele.
+
+
+//parou em 21:48
 
 
 
