@@ -10,8 +10,8 @@
 // setInterval execulta um script interminente com intervalos de milisegundos.
 // setTimeOut - espera um tempoe e xeculta uma so vez um script
 // split(' '); separa o que tem entre os espaços na string e transforma tudo em array
-
-
+// metodo push pega um array adiciona mais uma chave no fim do array - this._operation.push(value); 
+// parpu em 9:00
 class CalcController {
 
     constructor(){                  // metodo construtor do metodo; os paranteses sao parametros do construtor, precisa. - 
@@ -61,8 +61,20 @@ class CalcController {
        this.displayCalc = "ERROR";
     }
 
+    getLastOperation(){
+        return this._operation[this._operation.length-1]; // isso me da a ultima posiçao do array
+    }
+
     addOperation(value){
-        this._operation.push(value); // metodo push pega um array adiciona mais uma chave no fim do array
+
+        if (isNaN(this.getLastOperation())) { // se o ultimo item do array nao for numerico:
+            
+        } else {    // se for numerico
+            let newValue = this.getLastOperation().toString() + value.toString(); // converte o lastnumb p string e soma com o digitado tb convertido em string
+            this._operation.push(newValue);
+        }
+
+         
         console.log(this._operation);
     }
 
@@ -91,6 +103,9 @@ class CalcController {
                 break;
             case 'igual':
                 this.clearEntry();
+                break;
+            case 'ponto':
+
                 break;
             case '0':
             case '1':
