@@ -65,13 +65,58 @@ class CalcController {
         return this._operation[this._operation.length-1]; // isso me da a ultima posiçao do array
     }
 
+    // metodo substitui a ultima posiçao do array.
+    setLastOperation(value) {
+        this._operation[this._operation.length-1] = value;
+    }
+
+    isOperator(value){
+        return (['+', '-', '*', '%', '/'].indexOf(value) > -1)  // index of busca o valor do atributo dentro do arrauy que passei. Se dar match ele traz o index do elemento
+                                                                // Se ele nao encontrar, ele vai tarzer -1. Ja te retornando isso como um if
+    }
+
+    pushOperation(value) {
+        this._operation.push(value);
+
+        if (this._operation.length > 3) { // numero + operador + numero
+            
+            this.calc();
+            console.log(this._operation);
+        }
+    }
+
+    calc(){
+        let last = this._operation.pop(); // pega o quarto item do array e armazena nessa variavel
+        let result = eval(this._operation.join("")); // join junta o array aspas vazias junta em nada de separaçao. se fosse barra separava com barra
+        this._operation = [result, last];
+    }
+
+    setLastNumberToDisplay(){
+        
+    }
+
     addOperation(value){
 
         if (isNaN(this.getLastOperation())) { // se o ultimo item do array nao for numerico:
+            console.log("if");
+
+            if(this.isOperator(value)) { // verifica se é um operador
+                this.setLastOperation(value); // trocar o operador. 
+            } else if (isNaN(value)) {        // outro botao como ponto ou igual
+                    
+                    console.log(value + "entrada");
+            } else {
+                this.pushOperation(value);
+            }
             
         } else {    // se for numerico
+            if (this.isOperator(value)) {
+                this.pushOperation(value);
+            } else {
             let newValue = this.getLastOperation().toString() + value.toString(); // converte o lastnumb p string e soma com o digitado tb convertido em string
-            this._operation.push(newValue);
+            this.setLastOperation(parseInt(newValue));
+            this.setLastNumberToDisplay();
+            }
         }
 
          
@@ -87,25 +132,25 @@ class CalcController {
                 this.clearEntry();
                 break;
             case 'soma':
-                this.clearEntry();
+                this.addOperation('+');
                 break;
             case 'subtracao':
-                this.clearEntry();
+                this.addOperation('-');
                 break;
             case 'divisao':
-                this.clearEntry();
+                this.addOperation('/');
                 break;
             case 'multiplicacao':
-                this.clearEntry();
+                this.addOperation('*');
                 break;
             case 'porcento':
-                this.clearEntry();
+                this.addOperation('%');
                 break;
             case 'igual':
-                this.clearEntry();
+                this.addOperation('=');
                 break;
             case 'ponto':
-
+                this.addOperation('.');
                 break;
             case '0':
             case '1':
