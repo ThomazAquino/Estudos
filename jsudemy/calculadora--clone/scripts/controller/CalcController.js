@@ -34,6 +34,8 @@ class CalcController {
             this.setDisplayDateTime();
 
         }, 1000);    // esse segundo parametro é do setInterval, intervalo entre as execuçoes. 1s
+
+        this.setLastNumberToDisplay();
     }
 
     setDisplayDateTime(){
@@ -51,10 +53,12 @@ class CalcController {
     // Botao clear all da calc (AC) limpa tudo
     clearAll(){ 
         this._operation = [];
+        this.setLastNumberToDisplay();
     }
     // botao CE, tira o ultimo dogotado
     clearEntry() {
         this._operation.pop(); // pop tira a ultima chave do array
+        this.setLastNumberToDisplay();
     }
 
     setError(){
@@ -86,13 +90,39 @@ class CalcController {
     }
 
     calc(){
-        let last = this._operation.pop(); // pega o quarto item do array e armazena nessa variavel
+        let last = '';
+
+        if (this._operation.length-1 > 3) {
+            last = this._operation.pop(); // pega o quarto item do array e armazena nessa variavel
+        }
         let result = eval(this._operation.join("")); // join junta o array aspas vazias junta em nada de separaçao. se fosse barra separava com barra
-        this._operation = [result, last];
+
+        if (last == '%') {
+            result = result /100;
+            this._operation = [result]
+        } else {
+            
+            this._operation = [result];
+
+            if (last) this._operation.push(last);
+        }
+        
+        this.setLastNumberToDisplay();
     }
 
     setLastNumberToDisplay(){
-        
+        let lastNumber;
+
+        for (let i = this._operation.length-1; i >= 0; i--) {
+            if (!this.isOperator(this._operation[i])) {
+                lastNumber = this._operation[i];
+                break;
+            }
+        }
+
+        if(!lastNumber) lastNumber = 0;
+
+        this.displayCalc = lastNumber;
     }
 
     addOperation(value){
@@ -107,6 +137,7 @@ class CalcController {
                     console.log(value + "entrada");
             } else {
                 this.pushOperation(value);
+                this.setLastNumberToDisplay();
             }
             
         } else {    // se for numerico
@@ -147,7 +178,7 @@ class CalcController {
                 this.addOperation('%');
                 break;
             case 'igual':
-                this.addOperation('=');
+                this.calc();
                 break;
             case 'ponto':
                 this.addOperation('.');
