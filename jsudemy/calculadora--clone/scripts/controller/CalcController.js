@@ -15,6 +15,8 @@
 class CalcController {
 
     constructor(){                  // metodo construtor do metodo; os paranteses sao parametros do construtor, precisa. - 
+        this.lastOperator = '';
+        this.lastNumber = '';
         this._operation = [];
         this.locale = 'pt-BR'; // pra nao precisar digitar pt-br    ///
         this._displayCalcEl = document.querySelector("#display"); // esse EL no final do atributo é uma convensao para dizer que se refere ao elemento
@@ -89,13 +91,20 @@ class CalcController {
         }
     }
 
+    getResult() {
+        return eval(this._operation.join("")); // join junta o array aspas vazias junta em nada de separaçao. se fosse barra separava com barra
+    }
+
     calc(){
         let last = '';
 
         if (this._operation.length-1 > 3) {
             last = this._operation.pop(); // pega o quarto item do array e armazena nessa variavel
+            this._lastOperator = this.getLastItem();
+            this.lastNumber = this.getResult();
+
         }
-        let result = eval(this._operation.join("")); // join junta o array aspas vazias junta em nada de separaçao. se fosse barra separava com barra
+        let result = this.getResult();
 
         if (last == '%') {
             result = result /100;
@@ -110,15 +119,26 @@ class CalcController {
         this.setLastNumberToDisplay();
     }
 
-    setLastNumberToDisplay(){
-        let lastNumber;
+    getLastItem(isOperator = true){
+
+    }
+
+    getLastItem(isOperator = true){
+
+        let lastItem;
 
         for (let i = this._operation.length-1; i >= 0; i--) {
-            if (!this.isOperator(this._operation[i])) {
-                lastNumber = this._operation[i];
+            if (this.isOperator(this._operation[i]) == isOperator) {
+                lastItem = this._operation[i];
                 break;
             }
         }
+        return lastItem;
+
+    }
+
+    setLastNumberToDisplay(){
+        let lastNumber = this.getLastItem(false);
 
         if(!lastNumber) lastNumber = 0;
 
